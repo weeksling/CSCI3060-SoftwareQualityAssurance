@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<title>STOP! It's Midterm Time!</title>
+</head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- open container for site -->
+	<div class="container-fluid">
+		<h1>Oh Fuck Yeah! Matt's Notes, motha Fugga!</h1>
+
+		<div class="row-fluid">
+			<div class="span2 affix">
+				<ul class="nav">
+					<h3>Nav</h3>
+					<li class="active">
+						<a href="#chap11">Chap 11</a>
+					</li>
+					<li>
+						<a href="#chap12">Chap 12</a>
+					</li>
+					<li>
+						<a href="#chap13">Chap 13</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="offset2 span10 box box-shadow">
+				<a name="chap11"></a>
+				<h3>Chap 11: Black Box Testing Methods</h3>
+				<p>In black box testing we choose our test cases based solely ong the requirements, specification, or (sometimes) design document.</p>
+
+				<p><b>Advantage:</b> It is independent of software. They can be made in parallel with code, saving time<br>
+				It is normally based on the <i>functional specification</i>(requirements) for the software system</p><br>
+
+				<p><b>Functional Specifications</b><br>
+				usually contain 3 types of information<br></P>
+				<ol>
+					<li>The intended <i>inputs</i></li>
+					<li>The corresponding intended <i>actions</i></li>
+					<li>The correspponding intended <i>outputs<i></li>
+				</ol>
+
+				<p><b>Three kinds of Black Box Methods</b><br>
+				Methods can be broken into tree kinds of info:<br>
+				<ol>
+					<li>input coverage tests - analysis of just the inputs</li>
+					<li>output coverage tests - analysis of just the outputs</li>
+					<li>functionality coverage tests - based on analysis of actions with or without inputs or outputs
+				</ol><br></p>
+
+				<p><b>Systematic Functionality Testing</b><br>
+				We start with finctionality coverage testing.<br>
+				Functionality coverage attempts to partition the functional specifications into a set of small, separate requirements<br>
+				First we physicially partition the function specification into separate requirements.<br>
+				We model the separate requirements as independent even though they are not.</p><br>
+				<p><b>Test Cases for Each Requirement</b><br>
+				We create a test case for each partitioned requirement<br>
+				We use the simplest possible test inputs and make no attempt to be exhaustive.</p><br>
+
+				<p><b>a Sytematic Method</b><br>
+					Functionality coverage gives us a system for creating functionality test cases<br>
+					It tells us when we are done (i.e. when we have cases for every requirement)<br>
+					Not the same as acceptance testing because it treats functional requirements as if they were completely separate<br>
+					Therefore it doesn't replace acceptance testing. It is different form acceptance testing in that it is systematic, but like it in that it is only a partial test<br><br>
+					<b>Rules for choosing Test Inputs</b><br>
+					For test inputs, the princple means that we should isolate failure causes as much as possible:<br>
+					<ol>
+						<li>Consistently choosing the simplest values possible, in rder not to introduce arbitrar variations</li>
+						<li>Keeping everything constant between cases, changing only one value at a time</li>
+					</ol>
+					These principles hold for all systematic test methods
+				</p><br>
+				<p><b>Input Coverage Testing</b><br>
+				Analyze all possible inputs allowed by the function specifications, and create test sets based on the analysis<br>
+				There are several different methods: exhaustive, input partitioning, shotgun, and (robustness) boundary<br><br>
+				Ideally you would want to test every possible input, however this is normally infeasible<br><br>
+				<b>Input partitioning</b><br>
+				Since it's infeasible we break them up into smaller equivalent subsets. We often find that some subsets shouldn't be valid, and we thereby fix requirements without actually testing!<br>
+				We choose simple values from these sets and run them. We then verify that at least one of each type of input is handled correctly</p><br>
+
+				<p><b>Shotgun testing</b><br>
+					Black box shotgunning is basically choosing a large numebr of random values and performing test runs on all of them<br>
+					We then verify that the outputs are correct for the legal outputs and that it doesn't crash for the illegal ones<br>
+					<b>Is it systematic?</b>
+					it's black box, but it is not systematic because there is no completion criterion. To be confident we need to run a lot of tests, which isn't really useful unless we can automate the verification.<br><br>
+					Therefore, we often use a hybrid method. You perform a shotgun test for each partition of inputs.</p>
+
+				<p><b>Robustness and Input boundary Testing</b><br>
+					Robustness is the property that program won't crash, even with invalid input. It can be tested in two ways:
+					<ol>
+						<li>Shotgun testing - Random garbage input is used</li>
+						<li>Boundary Value Robustness Testing</li>
+					</ol>
+					<br><b>Boundary Testing</b><br>
+					While inputs way out of range are often handled correctly, tests relying on values near boundaries of acceptable and unacceptable often uncover failures.<br>
+					Unlike shotgun method, boundary input testing is systematic, meaning it is easy to choose test cases and it is easy to know when testing is done.
+				</p>
+				<hr>
+				<h3>Chapter 12:output Coverage Testing
+					<a name="chap12"></a></h3><br>
+				<p>
+					Output testing is much harder than input testing, because you need to determing the input required to produce each output.<br>
+					However, it is also very effective in finding problems because it requires a lot of knowledge of requirements.<br>
+					<b>Exhaustive</b>
+					Exhaustive testing is more practical with output testing than it is with input testing, bcause programs normally simplify data. However it is still normally impractical.<br>
+					<b>Ouput Partition Testing</b><br>
+					We can partition outputs the same way we partition inputs, but this still requires us to find which inputs give a particular output, and this is time-consuming<br>
+					If we can't find any input that results in a certain output, this normally indicates and error in the requirements.<br>
+					<b> Separate streams</b><br>
+					With both input and output,if there are separate stream, we need to create separate coverage tests for them.<br>
+					We also treat each separate stream as an input partition, which we then split into a set of smaller partitions.
+				</p><br>
+				<p><b>"Gray" Box Testing</b><br>
+					You can use Black Box testing at multiple different levels of development.<br>
+					At the system level you are using pure black box testing because you only need knowledge of requirements and no knowledge of code.<br>
+					In <i>Gray Box Testing</i> though, we need to know some details of implementationg.<br>
+					This becomes necessary when we are developing tests at the method level of the system.(some methods are defined, some may not yet be)<br>
+					At the method stage we apply the same black box testing mehtods, using parameters and global variables as inputs, and return values and end global variables as output.<br>
+					<i>Unit Testing</i> - Because it's still black box unit testing, we CAN still develop tests in parallel to the code.<br>
+					&nbsp;In fact, unit testing is way more precise than system testing and it can find errors very clearly<br>
+				</p><br>
+				<p>
+					<b>Method Testing</b><br>
+					If the unit we are testing is a method, then the requirements are the specification of the method<br>
+					the input is considered the current state of the environment and the value parameters<br>
+					The output is the value of the return values, the state of the environment after the method runs, and any exceptions thrown. These are together called the 'outcome' in unit testing.<br>
+					Once we know these, test cases can be created according to any of the black box testing criteria:<br>
+					&nbsp;<i>Functionality</i> coverage, <i>input</i> coverage, or <i>output</i> coverage<br><br>
+
+					<b>Test Harnesses</b><br>
+					When we are testing methods, there is a lot of interdependency. While unit testing, this is something we want to eliminate, hence we create a <i>test harness</i> designed to exercise a particular method, class, or subsystem.<br>
+					The test harness creates an environmnt to use the unit and runs the test inputs as well as checks the outcomes and reports failures.<br>
+					Test cases are programmed into the harness as a sequence of calls.<br><br>
+					<b> Factoring out Unit Dependencies</b><br>
+					To remove the dependencies between units, we create "stubs" in the harness.<br>
+					&nbsp;These simulate typical outcomes from other units and are called instead of the real things.<br>
+				</p>
+				<p>
+					<b>Specifications</b><br>
+					to make things easier we can decalre pre- and post- assertions that ensure our system is running the way we want it too. It helps in coverage analysis and give an automated way of checking outcomes.<br>
+					Several tools (JTest and C++Test) use pre- and post- conditions and invariant assertions to automatically do black box testing.<br>
+					these tools will automatically generate a test harness as well as provide stubs for other units required.<br>
+					They will also create some naive test cases, but these are naive, so we can still add some of our own as well.<br>
+					<i> problems:</i>
+					<ol>
+						<li>Outcomes have to be checked manually</li>
+						<li>the tool can't provide stubs unless knows every call being made, meaning you need to provide it with the code for the unit, meaning it actually isn't black box testing at all.</li>
+					</ol><br>
+					<b>Testing class interfaces</b><br>
+					testing a class requires you to test all methods in that class<br>
+					In naive class testing, the current state of all class, objects, and global variables as well as the parameters to methods are the "inputs"<br>
+					Outputs are are the new states of all the classes, objects, and global variables as well as the results and exceptions of the methods.<br>
+					The class specification usually includes invariant assertions for each method, as well as pre- and post- assertions for each method.
+				</p><br>
+				<p>
+					<b>Sequences of Method Calls</b><br>
+					We can't consider even simple classes independent, so we have to consider each call to be a sequence of class calls.<br>
+					Assertions are not very well suited for this kind of sequential dependency.<br>
+					<b>Trace Specifications</b><br>
+					Trace specificaitons are an explicit method for specifying the behavior of sequences of method calls<br>
+					They use trace expressions to specify the legal sequences of method calls in the object in a class<br>
+					&nbsp;Trace Expressions are a sequence of method calls with input and expected outcomes in the sequence<br>
+					<b>Legal and Illegal traces</b><br>
+					Trace specifications contain both legal and illegal traces.<br>
+					This gives us the ability to automate creation of test harnesses and naive test cases. It also makes it easier to generat black box test cases for call sequences<br>
+				</p><br>
+				<p><b>Assertions</b>
+					Assertions help with all kinds of testing(black boix, white box, gray box) because assertions are checked every time the method or class is used.<br>
+					this finds the errors and pinpoints their locations better.<br><br>
+					<b>Black Box Integration Testing</b>
+					moving from unit testing to integration testing.<br>
+					as we move through the testing we can progressively replace stubs in the harness with the actual units to be tested together.
+				</p>
+				<h3><a name="chap13"></a>White Box Testing</h3>
+				<p><b>Kinds of testing</b>
+					<ol>
+						<li>Code coverage<br>tests designed to run every method at least once</li>
+						<li>Logic Path / Decision Point Coverage<br>
+							Testing every path of execution</li>
+						<li>Data flow coverage<br>follows the data aspects of the program</li>
+						<li>Fault base testing<br>Mutate a piece of code, verifying that it does indeed break the program in some way</li>
+						<li>code injection<br>Inserting code into the program that logs what exactly it does. Does not funcitonally chagne the program or it's execution and is not really a test method</li>
+					</ol>
+					<b>Types of code injeciton</b>
+					<ol>
+						<li>Instrumental Injection<br>iserting into every method to follow data</li>
+						<li>Performance injection<br>logging the time it takes to do shit</li>
+						<li>Asseertion injection<br>Adding assertions to localize casues of errors</li>
+						<li>Fault injection<br>Adidng code to simulate runtime errors, to test fault handling</li>
+					</ol>
+				</p><br>
+				<p>
+					<b>Back to whitebox I guess...</b><br>
+					White box testing verifies that things actually work, whereas black box is mostly for verifying that we included everything we had too<br>
+					it is also automateable<br>
+					<i>There are three levels</i>
+					<ol>
+						<li>source level<br>We copy the code and add new statements to log coverage</li>
+						<li>executable code level<br>We copy the machine code and add new lines to log coverage out of line</li>
+						<li>execution sampling level<br>We don't change code at all but instead take a sample of where we are in the code at specific intervals. Becomes statistically valid after several runs through</li>
+					</ol>
+					the first two involve editing the code through injection in some way<br>
+					The third runs the original code but logs data and environment state at specified intervals<br><br>
+					<b>Statement Coverage</b><br>
+					Causes every statement to be executed at least once, proving that it is at least capable of executing correctly<br>
+					You make a test case for every single line to insure that it runs properly<br><br>
+					<b>Basic Block Analysis</b>
+					Basic blocks are blocks that have to run in sequence to have any effect.<br>
+					Completion criterion: a test case for every basic block.
+
+			</div>
+		</div>
+	</div>
+</body>
